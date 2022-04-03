@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./NavBar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,11 +9,15 @@ import {
 import { faBookmark  } from "@fortawesome/free-regular-svg-icons";
 import * as LottiePlayer from "@lottiefiles/lottie-player";
 import { Link } from "react-router-dom";
+import {useCart} from "../../context/cart-context";
+import { useWishlist } from "../../context/wishlist-context";
 import {useToggle} from "../../hooks/useToggle";
 import { Button } from "../Button/Button";
 
 export const NavBar = () => {
   const {toggle, toggleOption} = useToggle(false);
+  const {cart} = useCart();
+  const {wishlist} = useWishlist();
     return (
       <nav className={styles["nav"]}>
         <ul className={`${styles["menu"]} ${toggle && styles["display"]}`}>
@@ -55,13 +59,13 @@ export const NavBar = () => {
             <Link to="/wishlist" onClick={toggle && toggleOption}>
               <div className={styles["badge-container"]}>
                 <FontAwesomeIcon icon={faBookmark} size="2x" />
-                <div className={styles["badge"]}>0</div>
+                <div className={styles["badge"]}>{wishlist.length}</div>
               </div>
             </Link>
             <Link to="/cart" onClick={toggle && toggleOption}>
               <div className={styles["badge-container"]}>
                 <FontAwesomeIcon icon={faCartShopping} size="2x" />
-                <div className={styles["badge"]}>0</div>
+                <div className={styles["badge"]}>{cart.totalItems}</div>
               </div>
             </Link>
             <Link to="/signup" onClick={toggle && toggleOption}>
