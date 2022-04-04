@@ -62,6 +62,9 @@
   .products-header .banner-text {
     padding-top: 2rem;
   }
+  .cart-main{
+    padding: 2rem 0.5rem;
+  }
     .cart-text{
         padding-bottom: 2rem;
         text-align: center;
