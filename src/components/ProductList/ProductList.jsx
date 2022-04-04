@@ -4,7 +4,23 @@ import { getAllProducts } from "../../helpers/getAllProducts";
 import { SortData } from "../../helpers/SortData";
 import { FilterData } from "../../helpers/FilterData";
 import { ProductCard } from "../Card/ProductCard";
+import { useCart } from "../../context/cart-context";
+import { useWishlist } from "../../context/wishlist-context";
 export const ProductList = (props) => {
+  const { cart, cartDispatch } = useCart();
+  const { wishlist, wishlistDispatch } = useWishlist();
+  const onAddToCart = (product) => {
+    cartDispatch({ type: "ADD", payload: product });
+  };
+  const onAddToWishlist = (product) => {
+    wishlistDispatch({ type: "ADD", payload: product });
+  };
+  const isInCart = (product) => {
+    return cart.cart.find((item) => item._id === product._id);
+  };
+  const isInWishlist = (product) => {
+    return wishlist.find((item) => item._id === product._id);
+  };
   const { filterState } = props;
   let ProductList = [];
   const {
@@ -48,6 +64,10 @@ export const ProductList = (props) => {
         <ProductCard
           key={product._id}
           product={product}
+          onAddToCart={onAddToCart}
+          inCart={isInCart(product)}
+          onAddToWishlist={onAddToWishlist}
+          inWishlist={isInWishlist(product)}
         />
       ))}
     </>

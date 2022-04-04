@@ -1,0 +1,89 @@
+.products-header {
+  background-image: url("../../assets/images/background/shop-banner.jpg");
+  position: relative;
+  min-height: 60vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.products-header .banner-text {
+  padding-top: 8rem;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  color: var(--COLOR-white);
+  font-size: 2rem;
+}
+
+.products-header .banner-products {
+  padding-top: 1rem;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.products-header .banner-products a {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--COLOR-footer-text);
+}
+.banner-products.wishlist{
+    gap: 0.5rem;
+}
+
+.wishlist-main{
+    padding: 2rem;
+    display: flex;
+    flex-flow: column;
+    background-color: #F7F7F7;
+    gap: 2rem;
+}
+
+.wishlist-main .wishlist-header{
+    text-align: center;
+    font-size: 2rem;
+    color: var(--COLOR-primary-green);
+    font-weight: 500;
+}
+
+.wishlist-main .wishlist-content{
+    padding: 0 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+
+
+@media (max-width: 480px){
+  .products-header {
+    min-height: auto;
+    max-height: 400px;
+  }
+  .products-header .banner-text {
+    padding-top: 2rem;
+  }
+    .banner-products.wishlist{
+        flex-flow: row;
+    }
+    .wishlist-main .wishlist-content{
+        padding-bottom: 2rem;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .wishlist-main{
+      align-items: center;
+      padding: 2rem 0rem;
+    }
+}
