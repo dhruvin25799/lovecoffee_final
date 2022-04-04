@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+<h1 align="center"><b>Love & Coffee</b></h1>
+<div align="center">Love & Coffee is a React E-commerce app for coffee lovers.</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## **Live App**
+To view the website live in action visit\
+[Love&Coffee](https://love-coffee.netlify.app/).
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## **Functionality** 
+* Navbar
+  * Navbar has links to navigate to shop, cart, wishlist and login/register.
+  * The badges on cart and wishlist update as soon as items get added/removed to/from cart/wishlist.
+  * Contact Us and Login/Register are still WIP with regards to the pending Auth lecture.
+* Landing Page
+  * Featured categories -> On clicking on any of them, you'll be taken to the Product Listing Page with only that category filtered.
+  * CTA Banner -> A CTA banner with a tagline and clicking on the Shop Now button will take you to the Product Listing Page with all products.
+* Shop
+  * Displays all/filtered/sorted products.
+  * Filters -> Range Slider for price, Show Out of Stock Products, Filter by category, Rating and Sort by Price. Click on the clear button to clear all filters
+* Product Card
+  * Displays Product information with CTA
+  * On clicking Add to Cart, item is added to cart and button is changed to Go to cart.
+  * On clicking add to wishlist, item is added to wishlist and button is changed to Go to wishlist.
+  * If item already in cart/wishlist or both, button is also changed.
+* Cart
+  * Display Items in cart and total checkout value
+  * If no item in cart, all cart totals are zero
+  * If item is added, item is shown with options to increase or decrease quantity and/or to remove the item or to move it to wishlist.
+  * Cart totals and total cart items are also dynamically updated.
+* Wishlist
+  * Items added to wishlist show here
+  * CTA button to move item to cart.
+  * Items already in cart will have move to cart CTA disabled
+  * Items out of stock will be displayed out of stock and will have move to cart disabled.
+* Responsiveness
+  * All pages except the Login/Register Page are made responsive to mobile screens. (Width<480px)
+  * Navbar is also made responsive on mobile screens with a hamburger/close icon to toggle the full navbar.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## **Backend** 
+Backend for this app is a NodeJS express backend serving APIs and is deployed on Heroku.
+The backend API is accessed through a proxy mentioned in package.json.
+As of now the backend is serving API calls to get AllProductList and is also serving product images to make the frontend lighter and faster.
+* Github Repo : [Server](https://github.com/dhruvin25799/server_lovecoffee)
+* Live API : [ProductsAPI](https://server-lovecoffee.herokuapp.com/products)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## **How to run this app**
+To run this app locally on your machine, clone the repo to your local machine.\
+In the project directory, you can run\
+`npm start`\
+This will start the app in development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.\
+Make sure you have access to internet to make use of the API call inside the App.
+TO also run the API locally, update proxy in package.json with you local API address.
+Also checkout the docs for [Server](https://github.com/dhruvin25799/server_lovecoffee) for more info on how to deploy API locally.
