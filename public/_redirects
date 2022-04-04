@@ -1,0 +1,3 @@
+/products/*  https://server-lovecoffee.herokuapp.com/products/:splat  200
+/images/* https://server-lovecoffee.herokuapp.com/images/:splat  200
+/* /index.html 200
