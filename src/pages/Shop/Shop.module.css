@@ -1,0 +1,120 @@
+.products-header {
+  background-image: url("../../assets/images/background/shop-banner.jpg");
+  position: relative;
+  min-height: 60vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.products-header .banner-text {
+  padding-top: 8rem;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  color: var(--COLOR-white);
+  font-size: 2rem;
+}
+
+.products-header .banner-products {
+  padding-top: 1rem;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.products-header .banner-products a {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--COLOR-footer-text);
+}
+
+.product-main {
+  display: flex;
+  flex-flow: row;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: white;
+}
+
+.product-content {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.product-content .mobile-filters {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  display: none;
+}
+
+.product-content .mobile-filters a {
+  display: flex;
+  flex-flow: row;
+  gap: 0.5rem;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--COLOR-primary-green);
+}
+
+.product-cards {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  gap: 4rem;
+}
+
+
+
+@media (max-width: 480px) {
+  .products-header {
+    min-height: auto;
+    max-height: 400px;
+  }
+  .products-header .banner-text {
+    padding-top: 2rem;
+  }
+  .products-header .banner-products {
+    padding-bottom: 2rem;
+    flex-flow: column;
+  }
+  .product-main {
+    padding: 2rem 0;
+    position: relative;
+    flex-flow: column;
+  }
+  .product-content{
+    padding: 0;
+  }
+  .product-cards {
+    justify-content: center;
+    padding-bottom: 2rem;
+  }
+  .product-content .mobile-filters{
+      display: flex;
+      padding: 1rem;
+      align-items: center;
+  }
+  .mobile-dropdown{
+      display: flex;
+      flex-flow: row;
+      gap: 0.5rem;
+      padding: 1rem;
+  }
+}
+
