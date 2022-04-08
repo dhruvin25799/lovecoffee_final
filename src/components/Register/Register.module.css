@@ -1,0 +1,33 @@
+.login-box{
+    padding: 3rem;
+    flex: 1 1 50%;
+}
+.login-form{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    gap: 1rem;
+}
+.login-form .login-header{
+    color: var(--COLOR-primary-green);
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.login-form .login-input{
+    display: flex;
+    flex-flow: column;
+    gap: 0.5rem;
+}
+
+.login-input .input-control{
+    display: flex;
+    flex-flow: column;
+    gap: 0.3rem;
+}
+
+.login-input .input-control input{
+    padding: 1rem 0.5rem;
+    border: 2px solid var(--COLOR-border-color-quantity);
+    background-color: transparent;
+}
