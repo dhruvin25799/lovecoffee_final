@@ -22,7 +22,11 @@ export const Signup = () => {
         </div>
       </header>
       <main className={styles["login-main"]}>
-        {toggle ? <Register toggleOption={toggleOption} /> : <Login />}
+        {toggle ? (
+          <Register toggleOption={toggleOption} />
+        ) : (
+          <Login />
+        )}
         <hr />
         <div className={styles["login-change"]}>
           <div className={styles["change-header"]}>

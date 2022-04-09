@@ -11,13 +11,14 @@ export const loginUser = async (loginInputState) => {
     },
     body: JSON.stringify(userData),
   });
-  const data = await response.json();
-  if (response.status !== 200) {
-    if (response.status === 403) {
-      throw new Error("User already exists");
+  if(response.status===500){
+    throw new Error("API is down!");
+  } else {
+    const data = await response.json();
+    if (response.status !== 200) {
+        throw new Error(data.error);
     } else {
-      throw new Error("Could not register user!");
+          return data;
     }
   }
-  return data;
 };

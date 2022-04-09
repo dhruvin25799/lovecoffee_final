@@ -1,45 +1,60 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import styles from "../Register/Register.module.css";
 import { Button } from "../Button/Button";
 import { useHttp } from "../../hooks/useHttp";
 import { loginUser } from "../../helpers/loginUser";
 import { useAuth } from "../../context/auth-context";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 import {
   loginInputReducer,
   initialLoginInputState,
 } from "../../reducers/InputReducers";
-import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  const navigate = useNavigate();
   const { authDispatch } = useAuth();
+  const navigate = useNavigate();
+  const { sendRequest, data, error, status } = useHttp(loginUser);
   const [loginInputState, loginInputDispatch] = useReducer(
     loginInputReducer,
     initialLoginInputState
   );
-  const { sendRequest, data, error, status } = useHttp(() =>
-    loginUser(loginInputState)
-  );
   const submitHandler = (e) => {
     e.preventDefault();
-    sendRequest();
+    sendRequest(loginInputState);
   };
   useEffect(() => {
-    if (status === "completed")
+    if (status === "error") {
+      toast.error(error, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    if (status === "completed") {
       if (data) {
         authDispatch({ type: "LOGIN", payload: data.token });
-        navigate("/", { replace: true });
+        toast.success(
+          "Logged in successfully! You will be redirected to home page!",
+          {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            onClose: () => navigate("/", { replace: true }),
+          }
+        );
       }
-  }, [navigate, status, authDispatch, data]);
-  if (status === "completed") {
-    //authDispatch({type: "LOGIN", payload: data.token});
-    /* Handle Errro fix this */
-    return (
-      <div className={styles["login-box"]}>
-        <h1>Login Successful.</h1>
-      </div>
-    );
-  }
+    }
+  }, [authDispatch, data, navigate, status]);
   return (
     <div className={styles["login-box"]}>
       <form onSubmit={submitHandler}>
@@ -49,7 +64,7 @@ export const Login = () => {
           </div>
           <div className={styles["login-input"]}>
             <div className={styles["input-control"]}>
-              <label for="">Email Address</label>
+              <label>Email Address</label>
               <input
                 type="email"
                 placeholder="xyz@abc.com"
@@ -62,7 +77,7 @@ export const Login = () => {
               />
             </div>
             <div className={styles["input-control"]}>
-              <label for="">Password</label>
+              <label>Password</label>
               <input
                 type="password"
                 required
@@ -88,6 +103,7 @@ export const Login = () => {
           <Button isFull={true}>Login</Button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

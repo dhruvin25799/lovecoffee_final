@@ -3,6 +3,8 @@ import styles from "./Register.module.css";
 import { Button } from "../Button/Button";
 import { useHttp } from "../../hooks/useHttp";
 import { registerUser } from "../../helpers/registerUser";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   registerInputReducer,
   initialRegisterInputState,
@@ -14,9 +16,7 @@ export const Register = (props) => {
     registerInputReducer,
     initialRegisterInputState
   );
-  const { sendRequest, data, error, status } = useHttp(() =>
-    registerUser(registerInputState)
-  );
+  const { sendRequest, data, error, status } = useHttp(registerUser);
   const submitHandler = (e) => {
     e.preventDefault();
     if (registerInputState.password1.length < 8) {
@@ -25,35 +25,34 @@ export const Register = (props) => {
     if (registerInputState.password1 !== registerInputState.password2) {
       //Handle Error state here
     } else {
-      sendRequest();
+      sendRequest(registerInputState);
     }
   };
-  useEffect(() => {
-    if(status==="completed"){
-      toggleOption();
+  useEffect(()=>{
+    if (status === "error") {
+      toast.error(error, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
     }
-  },[status, toggleOption])
-  if (status === "pending") {
-    return (
-      <lottie-player
-        src="https://assets6.lottiefiles.com/packages/lf20_gqn2n5rs.json"
-        background="transparent"
-        speed="1"
-        style={{ width: "300px", height: "300px" }}
-        loop
-        autoplay
-      ></lottie-player>
-    );
-  }
-  if (status === "error") {
-    return (
-      <div className={styles["login-box"]}>
-        {/*Toast here */}
-        <h1>{error}</h1>
-        <Button onClick={() => props.toggleOption()}>Register</Button>
-      </div>
-    );
-  }
+     if (status === "completed") {
+       toast.success("User registered, please login!", {
+         position: "top-right",
+         autoClose: 1000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         onClose: () => toggleOption(),
+       });
+     }
+  },[status, toggleOption, error]);
   return (
     <div className={styles["login-box"]}>
       <form onSubmit={(e) => submitHandler(e)}>
@@ -63,7 +62,7 @@ export const Register = (props) => {
           </div>
           <div className={styles["login-input"]}>
             <div className={styles["input-control"]}>
-              <label for="">Email Address</label>
+              <label>Email Address</label>
               <input
                 type="email"
                 placeholder="xyz@abc.com"
@@ -79,7 +78,7 @@ export const Register = (props) => {
               />
             </div>
             <div className={styles["input-control"]}>
-              <label for="">Password</label>
+              <label>Password</label>
               <input
                 type="password"
                 required
@@ -94,7 +93,7 @@ export const Register = (props) => {
               />
             </div>
             <div className={styles["input-control"]}>
-              <label for="">Confirm Password</label>
+              <label>Confirm Password</label>
               <input
                 type="password"
                 required
@@ -120,6 +119,7 @@ export const Register = (props) => {
           <Button isFull={true}>Register</Button>
         </div>
       </form>
+      <ToastContainer/>
     </div>
   );
 };

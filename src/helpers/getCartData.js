@@ -1,15 +1,11 @@
-export const registerUser = async (registerInputState) => {
-  const userData = {
-    email: registerInputState.email,
-    password: registerInputState.password1,
-  };
-  const response = await fetch("/register", {
-    method: "POST",
+export const getCartData = async (token) => {
+  const response = await fetch("/user/cart", {
+    method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      "Authorization": token,
     },
-    body: JSON.stringify(userData),
   });
   if (response.status === 500) {
     throw new Error("API is down!");
@@ -17,7 +13,8 @@ export const registerUser = async (registerInputState) => {
     const data = await response.json();
     if (response.status !== 200) {
       throw new Error(data.error);
+    } else {
+      return data;
     }
-    return data;
   }
 };
