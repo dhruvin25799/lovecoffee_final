@@ -54,55 +54,69 @@ export const Login = () => {
         );
       }
     }
-  }, [authDispatch, data, navigate, status]);
+  }, [authDispatch, data, navigate, status, error]);
   return (
     <div className={styles["login-box"]}>
-      <form onSubmit={submitHandler}>
-        <div className={styles["login-form"]}>
-          <div className={styles["login-header"]}>
-            <p>Login</p>
-          </div>
-          <div className={styles["login-input"]}>
-            <div className={styles["input-control"]}>
-              <label>Email Address</label>
-              <input
-                type="email"
-                placeholder="xyz@abc.com"
-                required
-                value={loginInputState.email}
-                autoComplete="email"
-                onChange={(e) =>
-                  loginInputDispatch({ type: "EMAIL", payload: e.target.value })
-                }
-              />
+      {status === "pending" ? (
+        <lottie-player
+          src="https://assets6.lottiefiles.com/packages/lf20_gqn2n5rs.json"
+          background="transparent"
+          speed="1"
+          style={{ width: "300px", height: "300px" }}
+          loop
+          autoplay
+        ></lottie-player>
+      ) : (
+        <form onSubmit={submitHandler}>
+          <div className={styles["login-form"]}>
+            <div className={styles["login-header"]}>
+              <p>Login</p>
             </div>
-            <div className={styles["input-control"]}>
-              <label>Password</label>
-              <input
-                type="password"
-                required
-                value={loginInputState.password}
-                autoComplete="current-password"
-                onChange={(e) =>
-                  loginInputDispatch({
-                    type: "PASSWORD",
-                    payload: e.target.value,
-                  })
-                }
-              />
+            <div className={styles["login-input"]}>
+              <div className={styles["input-control"]}>
+                <label>Email Address</label>
+                <input
+                  type="email"
+                  placeholder="xyz@abc.com"
+                  required
+                  value={loginInputState.email}
+                  autoComplete="email"
+                  onChange={(e) =>
+                    loginInputDispatch({
+                      type: "EMAIL",
+                      payload: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div className={styles["input-control"]}>
+                <label>Password</label>
+                <input
+                  type="password"
+                  required
+                  value={loginInputState.password}
+                  autoComplete="current-password"
+                  onChange={(e) =>
+                    loginInputDispatch({
+                      type: "PASSWORD",
+                      payload: e.target.value,
+                    })
+                  }
+                />
+              </div>
             </div>
-          </div>
-          <div className={styles["login-extra"]}>
-            <div className={styles["input-control-row"]}>
-              <label>
-                <input type="checkbox" />
-                Remember me
-              </label>
+            <div className={styles["login-extra"]}>
+              <div className={styles["input-control-row"]}>
+                <label>
+                  <input type="checkbox" />
+                  Remember me
+                </label>
+              </div>
             </div>
+            <Button isFull={true}>Login</Button>
           </div>
-          <Button isFull={true}>Login</Button>
-        </div>
-      </form>
+        </form>
+      )}
       <ToastContainer />
     </div>
   );
