@@ -2,4 +2,5 @@
 /images/* https://server-lovecoffee.herokuapp.com/images/:splat  200
 /login/* https://server-lovecoffee.herokuapp.com/login/:splat  200
 /register/* https://server-lovecoffee.herokuapp.com/register/:splat  200
+/user/* https://server-lovecoffee.herokuapp.com/user/:splat  200
 /* /index.html 200
