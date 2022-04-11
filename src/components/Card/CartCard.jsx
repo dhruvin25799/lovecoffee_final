@@ -23,9 +23,7 @@ export const CartCard = (props) => {
             </p>
             <FontAwesomeIcon
               icon={faXmark}
-              onClick={() =>
-                props.onChange({ type: "DELETE", payload: props.product })
-              }
+              onClick={() => props.onRemoveFromCart(props.product)}
             />
           </div>
           <div className={styles["card-content"]}>
@@ -42,9 +40,7 @@ export const CartCard = (props) => {
               <h3>Quantity</h3>
               <div className={styles["quantity-combo"]}>
                 <button
-                  onClick={() =>
-                    props.onChange({ type: "ADD", payload: props.product })
-                  }
+                  onClick={() => props.onChange(props.product, "increment")}
                 >
                   <FontAwesomeIcon icon={faPlus} />
                 </button>
@@ -55,9 +51,7 @@ export const CartCard = (props) => {
                   value={props.product.quantity}
                 />
                 <button
-                  onClick={() =>
-                    props.onChange({ type: "REMOVE", payload: props.product })
-                  }
+                  onClick={() => props.onChange(props.product, "decrement")}
                 >
                   <FontAwesomeIcon icon={faMinus} />
                 </button>
@@ -77,9 +71,10 @@ export const CartCard = (props) => {
           <div>
             <Button
               isFull={true}
+              disabled={props.isInWishlist}
               onClick={() => props.onMoveFromCartToWIshlist(props.product)}
             >
-              Move to Wishlist
+              {props.isInWishlist ? "Already in Wishlist" : "Move to Wishlist"}
             </Button>
           </div>
         </div>

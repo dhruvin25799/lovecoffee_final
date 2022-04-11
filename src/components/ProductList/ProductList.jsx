@@ -6,14 +6,32 @@ import { FilterData } from "../../helpers/FilterData";
 import { ProductCard } from "../Card/ProductCard";
 import { useCart } from "../../context/cart-context";
 import { useWishlist } from "../../context/wishlist-context";
+import { addToWishlist } from "../../helpers/addToWishlist";
+import { useAuth } from "../../context/auth-context";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { addToCart } from "../../helpers/addToCart";
 export const ProductList = (props) => {
+  const {authState} = useAuth();
   const { cart, cartDispatch } = useCart();
   const { wishlist, wishlistDispatch } = useWishlist();
+  const {
+    sendRequest: sendToWishlist,
+    error: wishlistError,
+    status: wishlistStatus,
+    data: wishlistData,
+  } = useHttp(addToWishlist);
+  const {
+    sendRequest: sendToCart,
+    error: cartError,
+    status: cartStatus,
+    data: cartData,
+  } = useHttp(addToCart);
   const onAddToCart = (product) => {
-    cartDispatch({ type: "ADD", payload: product });
+    sendToCart({product, token:authState.token});
   };
   const onAddToWishlist = (product) => {
-    wishlistDispatch({ type: "ADD", payload: product });
+    sendToWishlist({product, token:authState.token});
   };
   const isInCart = (product) => {
     return cart.cart.find((item) => item._id === product._id);
@@ -37,6 +55,59 @@ export const ProductList = (props) => {
   useEffect(() => {
     sendRequest();
   }, [sendRequest]);
+  useEffect(()=>{
+    if(wishlistStatus==="completed"){
+      wishlistDispatch({ type: "ADD", payload: wishlistData });
+      toast.success(
+        "Item added to wishlist!",
+        {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+    }
+    if(wishlistStatus==="error"){
+      toast.error("Oops! Failed to add, try again!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  },[wishlistStatus, wishlistDispatch, wishlistData])
+  useEffect(()=>{
+    if(cartStatus==="completed"){
+      cartDispatch({ type: "ADD", payload: cartData });
+      toast.success("Item added to cart!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    if(cartStatus === "error"){
+      toast.error("Oops! Failed to add, try again!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  },[cartStatus, cartDispatch, cartData])
   if (status === "pending") {
     return (
       <lottie-player
@@ -70,6 +141,7 @@ export const ProductList = (props) => {
           inWishlist={isInWishlist(product)}
         />
       ))}
+      <ToastContainer/>
     </>
   );
 };
