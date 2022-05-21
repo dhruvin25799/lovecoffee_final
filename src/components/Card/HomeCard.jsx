@@ -10,7 +10,6 @@ export const HomeCard = (props) => {
             className={styles["resp-image"]}
             src={props.image}
             alt=""
-            srcset=""
           />
         </div>
         <div className={styles["card-body"]}>

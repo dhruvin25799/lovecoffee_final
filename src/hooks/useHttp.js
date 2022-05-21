@@ -10,10 +10,10 @@ const httpInitialState = {
 
 export const useHttp = (requestFunction) => {
   const [httpState, httpDispatch] = useReducer(httpReducer, httpInitialState);
-  const sendRequest = useCallback(async() => {
+  const sendRequest = useCallback(async(requestData) => {
     httpDispatch({ type: "SEND" });
     try {
-      const resp = await requestFunction();
+      const resp = await requestFunction(requestData);
       httpDispatch({ type: "SUCCESS", payload: resp });
     } catch (error) {
       httpDispatch({
