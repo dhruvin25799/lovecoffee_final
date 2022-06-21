@@ -21,6 +21,6 @@ export const initialFilterState = {
   showOutOfStock: false,
   sort: null,
   category: false,
-  price: "0",
+  price: "2000",
   rating: "0",
 };

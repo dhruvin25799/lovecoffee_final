@@ -129,7 +129,6 @@ export const CartList = () => {
           />
         ))}
       </div>
-      <ToastContainer />
     </>
   );
 };

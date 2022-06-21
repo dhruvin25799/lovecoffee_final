@@ -3,7 +3,6 @@ import { useToggle } from "../../hooks/useToggle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faSliders } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Filters.module.css";
-import {Button} from "../Button/Button";
 
 export const Filters = (props) => {
   const { toggle, toggleOption } = useToggle(false);
@@ -15,16 +14,6 @@ export const Filters = (props) => {
           <FontAwesomeIcon icon={faSliders} />
           Show Filters
         </button>
-        {/* <div className={styles["mobile-dropdown"]}>
-                <select
-                  name="sorting"
-                  id="sorting"
-                  className={styles["sorting-select"]}
-                >
-                  <option value="ASC">Low to High</option>
-                  <option value="DESC">High to Low</option>
-                </select>
-              </div> */}
       </div>
       <aside
         className={`${styles["product-filters"]} ${
@@ -48,8 +37,8 @@ export const Filters = (props) => {
           <div className={styles["slider"]}>
             <input
               type="range"
-              min="0"
-              max="2000"
+              min="500"
+              max="1500"
               value={filterState.price}
               step="100"
               onChange={(e) =>

@@ -13,7 +13,7 @@ export const CartCard = (props) => {
             className={styles["resp-image"]}
             src={props.product.img}
             alt=""
-            srcset=""
+            srcSet=""
           />
         </div>
         <div className={styles["card-body"]}>
@@ -40,20 +40,22 @@ export const CartCard = (props) => {
               <h3>Quantity</h3>
               <div className={styles["quantity-combo"]}>
                 <button
-                  onClick={() => props.onChange(props.product, "increment")}
+                  onClick={() => props.onChange(props.product, "decrement")}
                 >
-                  <FontAwesomeIcon icon={faPlus} />
+                  <FontAwesomeIcon icon={faMinus} />
                 </button>
+
                 <input
                   type="number"
                   min="0"
                   step="1"
+                  readOnly
                   value={props.product.quantity}
                 />
                 <button
-                  onClick={() => props.onChange(props.product, "decrement")}
+                  onClick={() => props.onChange(props.product, "increment")}
                 >
-                  <FontAwesomeIcon icon={faMinus} />
+                  <FontAwesomeIcon icon={faPlus} />
                 </button>
               </div>
             </div>

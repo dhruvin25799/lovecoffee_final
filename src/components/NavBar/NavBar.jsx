@@ -30,9 +30,6 @@ export const NavBar = () => {
           <Link to="/shop" onClick={toggle && toggleOption}>
             Shop
           </Link>
-          <Link to="/about" onClick={toggle && toggleOption}>
-            Contact Us
-          </Link>
         </li>
         <li className={`${styles["nav-brand"]} ${toggle && styles["display"]}`}>
           <Link to="/" onClick={toggle && toggleOption}>

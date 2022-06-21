@@ -117,7 +117,6 @@ export const Login = () => {
           </div>
         </form>
       )}
-      <ToastContainer />
     </div>
   );
 };

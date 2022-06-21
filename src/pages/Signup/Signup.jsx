@@ -22,27 +22,22 @@ export const Signup = () => {
         </div>
       </header>
       <main className={styles["login-main"]}>
-        {toggle ? (
-          <Register toggleOption={toggleOption} />
-        ) : (
-          <Login />
-        )}
+        {toggle ? <Register toggleOption={toggleOption} /> : <Login />}
         <hr />
         <div className={styles["login-change"]}>
           <div className={styles["change-header"]}>
-            <p>{toggle ? "Login" : "Register"}</p>
+            <p>{toggle ? "Already have an account?" : "Don't have an account?"}</p>
           </div>
           <div className={styles["login-change-desc"]}>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum culpa
-              inventore praesentium eveniet temporibus, rem fuga iusto molestias
-              nisi et modi ipsa tempore quasi corrupti quo ut. Minima, quod
-              nesciunt.
+              {toggle
+                ? "Resume with your cart and wishlist from last session!"
+                : "With an account you can save your cart and wishlist data and resume anytime"}
             </p>
           </div>
           <div className={styles["login-change-cta"]}>
             <Button isFull={true} onClick={toggleOption}>
-              {toggle ? "Already have one?" : "Don't have an account?"}
+              {toggle ? "Go to Login" : "Go to Register"}
             </Button>
           </div>
         </div>

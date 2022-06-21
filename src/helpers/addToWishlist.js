@@ -1,17 +1,20 @@
+import axios from "axios";
 export const addToWishlist = async (data) => {
-  const response = await fetch("/user/wishlist/" + data.product._id, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: data.token,
+  const response = await axios.post(
+    "/user/wishlist/" + data.product._id,
+    {
+      product: data.product,
     },
-    body: JSON.stringify({product: data.product}),
-  });
+    {
+      headers: {
+        Authorization: data.token,
+      },
+    }
+  );
   if (response.status === 500) {
     throw new Error("API is down!");
   } else {
-    const data = await response.json();
+    const data = response.data;
     if (response.status !== 200) {
       throw new Error(data.error);
     } else {

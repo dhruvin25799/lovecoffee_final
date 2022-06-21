@@ -100,7 +100,6 @@ export const Wishlist = (props) => {
             />
           ))}
         </div>
-        <ToastContainer />
       </main>
     </>
   );

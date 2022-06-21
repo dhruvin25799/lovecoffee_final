@@ -1,16 +1,14 @@
+import axios from "axios";
 export const getCartData = async (token) => {
-  const response = await fetch("/user/cart", {
-    method: "GET",
+  const response = await axios.get("/user/cart", {
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "Authorization": token,
+      Authorization: token,
     },
   });
   if (response.status === 500) {
     throw new Error("API is down!");
   } else {
-    const data = await response.json();
+    const data = response.data;
     if (response.status !== 200) {
       throw new Error(data.error);
     } else {

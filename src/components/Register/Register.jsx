@@ -131,7 +131,6 @@ export const Register = (props) => {
             </div>
           </form>
         )}
-        <ToastContainer />
       </div>
     </>
   );

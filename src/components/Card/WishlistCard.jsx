@@ -13,7 +13,7 @@ export const WishlistCard = (props) => {
               className={styles["resp-image"]}
               src={props.product.img}
               alt=""
-              srcset=""
+              srcSet=""
             />
             {!props.product.inStock && (
               <div className={styles["overlay"]}>

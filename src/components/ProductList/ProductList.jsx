@@ -8,11 +8,11 @@ import { useCart } from "../../context/cart-context";
 import { useWishlist } from "../../context/wishlist-context";
 import { addToWishlist } from "../../helpers/addToWishlist";
 import { useAuth } from "../../context/auth-context";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addToCart } from "../../helpers/addToCart";
 export const ProductList = (props) => {
-  const {authState} = useAuth();
+  const { authState } = useAuth();
   const { cart, cartDispatch } = useCart();
   const { wishlist, wishlistDispatch } = useWishlist();
   const {
@@ -28,10 +28,10 @@ export const ProductList = (props) => {
     data: cartData,
   } = useHttp(addToCart);
   const onAddToCart = (product) => {
-    sendToCart({product, token:authState.token});
+    sendToCart({ product, token: authState.token });
   };
   const onAddToWishlist = (product) => {
-    sendToWishlist({product, token:authState.token});
+    sendToWishlist({ product, token: authState.token });
   };
   const isInCart = (product) => {
     return cart.cart.find((item) => item._id === product._id);
@@ -55,23 +55,20 @@ export const ProductList = (props) => {
   useEffect(() => {
     sendRequest();
   }, [sendRequest]);
-  useEffect(()=>{
-    if(wishlistStatus==="completed"){
+  useEffect(() => {
+    if (wishlistStatus === "completed") {
       wishlistDispatch({ type: "ADD", payload: wishlistData });
-      toast.success(
-        "Item added to wishlist!",
-        {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-        }
-      );
+      toast.success("Item added to wishlist!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
     }
-    if(wishlistStatus==="error"){
+    if (wishlistStatus === "error") {
       toast.error("Oops! Failed to add, try again!", {
         position: "top-right",
         autoClose: 1000,
@@ -82,9 +79,9 @@ export const ProductList = (props) => {
         progress: undefined,
       });
     }
-  },[wishlistStatus, wishlistDispatch, wishlistData])
-  useEffect(()=>{
-    if(cartStatus==="completed"){
+  }, [wishlistStatus, wishlistDispatch, wishlistData]);
+  useEffect(() => {
+    if (cartStatus === "completed") {
       cartDispatch({ type: "ADD", payload: cartData });
       toast.success("Item added to cart!", {
         position: "top-right",
@@ -96,7 +93,7 @@ export const ProductList = (props) => {
         progress: undefined,
       });
     }
-    if(cartStatus === "error"){
+    if (cartStatus === "error") {
       toast.error("Oops! Failed to add, try again!", {
         position: "top-right",
         autoClose: 1000,
@@ -107,7 +104,7 @@ export const ProductList = (props) => {
         progress: undefined,
       });
     }
-  },[cartStatus, cartDispatch, cartData])
+  }, [cartStatus, cartDispatch, cartData]);
   if (status === "pending") {
     return (
       <lottie-player
@@ -141,7 +138,6 @@ export const ProductList = (props) => {
           inWishlist={isInWishlist(product)}
         />
       ))}
-      <ToastContainer/>
     </>
   );
 };

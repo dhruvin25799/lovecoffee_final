@@ -18,7 +18,7 @@ export const useHttp = (requestFunction) => {
     } catch (error) {
       httpDispatch({
         type: "ERROR",
-        payload: error.message || "Something went wrong!",
+        payload: error.response.data.error || "Something went wrong!",
       });
     }
   }, [requestFunction]);

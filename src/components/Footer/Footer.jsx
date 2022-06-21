@@ -30,7 +30,6 @@ export const Footer = () => {
             <ul>
               <Link to="/">Home</Link>
               <Link to="/shop">Shop</Link>
-              <Link to="/about">About Us</Link>
             </ul>
           </div>
         </div>

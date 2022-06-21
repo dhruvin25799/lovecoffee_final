@@ -1,0 +1,8 @@
+.main-404{
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}

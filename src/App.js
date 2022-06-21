@@ -1,5 +1,5 @@
 import React from "react";
-import './App.css';
+import "./App.css";
 import { Home } from "./pages/Home/Home";
 import { Footer } from "./components/Footer/Footer";
 import { Signup } from "./pages/Signup/Signup";
@@ -8,6 +8,9 @@ import { Route, Routes } from "react-router-dom";
 import { Shop } from "./pages/Shop/Shop";
 import { Cart } from "./pages/Cart/Cart";
 import { Wishlist } from "./pages/Wishlist/Wishlist";
+import { Error404 } from "./pages/404/Error404";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <div className="App">
@@ -20,8 +23,10 @@ function App() {
         </Route>
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
