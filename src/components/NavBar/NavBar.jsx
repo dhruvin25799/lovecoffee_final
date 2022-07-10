@@ -5,6 +5,7 @@ import {
   faCartShopping,
   faBars,
   faXmark,
+  faAddressCard
 } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import * as LottiePlayer from "@lottiefiles/lottie-player";
@@ -14,12 +15,14 @@ import { useWishlist } from "../../context/wishlist-context";
 import { useToggle } from "../../hooks/useToggle";
 import { Button } from "../Button/Button";
 import { useAuth } from "../../context/auth-context";
+import { useAddress } from "../../context/address-context";
 
 export const NavBar = () => {
   const { toggle, toggleOption } = useToggle(false);
   const { cart } = useCart();
   const { wishlist } = useWishlist();
   const { authState, authDispatch } = useAuth();
+  const { address } = useAddress();
   return (
     <nav className={styles["nav"]}>
       <ul className={`${styles["menu"]} ${toggle && styles["display"]}`}>
@@ -57,6 +60,12 @@ export const NavBar = () => {
             <div className={styles["badge-container"]}>
               <FontAwesomeIcon icon={faCartShopping} size="2x" />
               <div className={styles["badge"]}>{cart.totalItems}</div>
+            </div>
+          </Link>
+          <Link to="/address" onClick={toggle && toggleOption}>
+            <div className={styles["badge-container"]}>
+              <FontAwesomeIcon icon={faAddressCard} size="2x" />
+              <div className={styles["badge"]}>{address.length}</div>
             </div>
           </Link>
           {authState.isLoggedIn ? (

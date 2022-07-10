@@ -1,6 +1,6 @@
-/products/*  https://server-lovecoffee.herokuapp.com/products/:splat  200
-/images/* https://server-lovecoffee.herokuapp.com/images/:splat  200
-/login/* https://server-lovecoffee.herokuapp.com/login/:splat  200
-/register/* https://server-lovecoffee.herokuapp.com/register/:splat  200
-/user/* https://server-lovecoffee.herokuapp.com/user/:splat  200
+/products/*  https://dull-crow-tweed-jacket.cyclic.app/products/:splat  200
+/images/* https://dull-crow-tweed-jacket.cyclic.app/images/:splat  200
+/login/* https://dull-crow-tweed-jacket.cyclic.app/login/:splat  200
+/register/* https://dull-crow-tweed-jacket.cyclic.app/register/:splat  200
+/user/* https://dull-crow-tweed-jacket.cyclic.app/user/:splat  200
 /* /index.html 200

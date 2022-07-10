@@ -9,8 +9,10 @@ import { Shop } from "./pages/Shop/Shop";
 import { Cart } from "./pages/Cart/Cart";
 import { Wishlist } from "./pages/Wishlist/Wishlist";
 import { Error404 } from "./pages/404/Error404";
+import { RequiresAuth } from "./components/RequiresAuth/RequiresAuth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Address } from "./pages/Address/Address";
 function App() {
   return (
     <div className="App">
@@ -23,6 +25,14 @@ function App() {
         </Route>
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route
+          path="/address"
+          element={
+            <RequiresAuth>
+              <Address/>
+            </RequiresAuth>
+          }
+        />
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />

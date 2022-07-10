@@ -1,0 +1,88 @@
+.address-heading {
+  background-image: url("../../assets/images/background/shop-banner.jpg");
+  position: relative;
+  min-height: 60vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.address-heading .banner-text {
+  padding-top: 8rem;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  color: var(--COLOR-white);
+  font-size: 2rem;
+}
+
+.address-main {
+  padding: 2rem;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-flow: column;
+  gap: 2rem;
+}
+
+.address-main .address-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+  color: var(--COLOR-primary-green);
+  font-weight: 500;
+}
+
+.address-main .address-content {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.resp-image {
+  width: 100%;
+  height: auto;
+}
+
+.login-form{
+  display: flex;
+  flex-flow: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.login-form .input-control {
+  display: flex;
+  flex-flow: column;
+  gap: 0.3rem;
+  width: 400px;
+}
+
+.login-form .input-control input {
+  padding: 1rem 0.5rem;
+  border: 2px solid var(--COLOR-border-color-quantity);
+  background-color: transparent;
+}
+
+@media (max-width: 480px) {
+  .address-header {
+    min-height: auto;
+    max-height: 400px;
+  }
+  .products-address .banner-text {
+    padding-top: 2rem;
+  }
+  .address-main {
+    padding: 2rem 0.5rem;
+  }
+  .address-text {
+    padding-bottom: 2rem;
+    text-align: center;
+  }
+  .address-main .address-content {
+    flex-flow: column;
+  }
+}
