@@ -8,8 +8,8 @@
 To view the website live in action visit\
 [Love&Coffee](https://love-coffee.netlify.app/).
 
-https://user-images.githubusercontent.com/47236093/161788878-2b52cf8b-4717-4d1b-bbc5-406cbb4b95f1.mp4
 
+https://user-images.githubusercontent.com/47236093/179461337-9c885abb-b927-4a6d-80a7-4bbc1195d43b.mp4
 
 
 ---
