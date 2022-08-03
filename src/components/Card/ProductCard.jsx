@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./ProductCard.module.css";
 import { RupeeSign } from "../RupeeSign/RupeeSign";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 import { useAuth } from "../../context/auth-context";
 import { toast } from "react-toastify";
 export const ProductCard = (props) => {
+  const navigate = useNavigate();
   const { authState } = useAuth();
   const isLoggedIn = authState.isLoggedIn;
   return (
@@ -55,7 +56,16 @@ export const ProductCard = (props) => {
               onClick={() =>
                 isLoggedIn
                   ? props.onAddToCart(props.product)
-                  : toast.error("Please log in first")
+                  : toast.error("Please log in first!", {
+                      position: "top-right",
+                      autoClose: 1000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: false,
+                      draggable: true,
+                      progress: undefined,
+                      onClose: () => navigate("/signup", { replace: true }),
+                    })
               }
             >
               Add to cart
@@ -71,7 +81,16 @@ export const ProductCard = (props) => {
               onClick={() =>
                 isLoggedIn
                   ? props.onAddToWishlist(props.product)
-                  : toast.error("Please log in first")
+                  : toast.error("Please log in first!", {
+                      position: "top-right",
+                      autoClose: 1000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: false,
+                      draggable: true,
+                      progress: undefined,
+                      onClose: () => navigate("/signup", { replace: true }),
+                    })
               }
             >
               Add to wishlist

@@ -114,6 +114,12 @@ export const Login = () => {
               </div>
             </div>
             <Button isFull={true}>Login</Button>
+            <Button
+              isFull={true}
+              onClick={() => loginInputDispatch({ type: "DUMMY" })}
+            >
+              Log In with dummy account
+            </Button>
           </div>
         </form>
       )}
